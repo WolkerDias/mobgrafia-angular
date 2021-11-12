@@ -1,9 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
+
+
 
 const routes: Routes = [
-  {path: "", component:HeaderComponent},
+  {path: "", redirectTo:'/index', pathMatch: 'full'},
+  {
+    path: 'index',
+    loadChildren: () =>
+    import('./index-module/index-module.module').
+    then(m => m.IndexModuleModule)
+  },
+  {
+    path: 'user',
+    loadChildren: () =>
+    import('./user-module/user-module.module').
+    then(m => m.UserModuleModule)
+  }
 ];
 
 @NgModule({
